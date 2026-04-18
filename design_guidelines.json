@@ -1,0 +1,96 @@
+{
+  "theme": "Light",
+  "archetype": "1 (Organic & Earthy)",
+  "emotional_tone": "Grounded, reliable, scientific yet accessible, natural.",
+  "typography": {
+    "headings": {
+      "family": "Manrope",
+      "weights": ["600", "800"],
+      "usage_rules": "Use tracking-tight for all H1 and H2. Keep sizes constrained (max text-5xl for hero/dashboard titles)."
+    },
+    "body": {
+      "family": "IBM Plex Sans",
+      "weights": ["400", "500"],
+      "usage_rules": "Use for all data tables, form inputs, and regular text. Provides high legibility for technical data."
+    },
+    "mono": {
+      "family": "JetBrains Mono",
+      "usage_rules": "Use for data values (N, P, K, pH) and model confidence scores to ensure alignment."
+    }
+  },
+  "colors": {
+    "background": "#F9F8F6",
+    "surface": "#FFFFFF",
+    "primary": "#2D4A22",
+    "primary_hover": "#3B5C2E",
+    "secondary": "#8A9A5B",
+    "accent": "#CC5500",
+    "accent_hover": "#E66000",
+    "text_primary": "#1A1D1A",
+    "text_secondary": "#525A52",
+    "border": "#E5E7EB",
+    "success": "#34D399",
+    "warning": "#FBBF24",
+    "danger": "#EF4444",
+    "chart_palettes": ["#2D4A22", "#8A9A5B", "#CC5500", "#D4A373", "#E9EDC9"]
+  },
+  "layout": {
+    "strategy": "The 'Control Room' Grid",
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "spacing": "Generous spacing. Use gap-6 or gap-8 for dashboard bento grids.",
+    "dashboard_structure": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4. The main crop recommendation gets col-span-2 row-span-2. Form inputs take a sticky sidebar or col-span-1."
+  },
+  "components": {
+    "cards": "Subtle roundness (rounded-xl max 12px). Use 1px subtle border (border-border). Avoid heavy shadows; use shadow-sm or flat solid backgrounds.",
+    "inputs": "Shadcn UI standard inputs but styled with rounded-lg. Active/Focus state must ring with primary color (ring-primary/20).",
+    "buttons": "Primary buttons use deep forest green (#2D4A22) with white text. Hover state slightly lighter. Rounded-lg. Include transition-all duration-200.",
+    "charts": "Use Recharts. Style tooltips to match card styling (white bg, 1px border, shadow-sm).",
+    "chatbot": "Floating action button in the bottom right or a collapsible side panel. Use a distinct subtle highlight for AI messages (e.g., bg-[#F1EFE7])."
+  },
+  "motion": {
+    "hover_states": "translate-y-[-2px] shadow-md for interactive cards.",
+    "transitions": "transition-all duration-300 ease-in-out for buttons and links.",
+    "loading": "Use an organic pulsing effect or a minimalist spinner (lucide-react Loader2) tinted primary."
+  },
+  "media": [
+    {
+      "category": "hero_background",
+      "url": "https://static.prod-images.emergentagent.com/jobs/0e74adc5-d4e2-40d4-86ab-aa4167bd6db4/images/df6fc5ae1901a2aa6acb5e0c6e87cf85c7137faed945fa38623455040e4fc6a5.png",
+      "description": "Lush green agricultural farm field at golden hour. Use as a subtle backdrop or hero image overlay with bg-white/80 on top for readability.",
+      "instructions": "Place in the main dashboard header or landing wrapper. Ensure high opacity overlay if text sits on it."
+    },
+    {
+      "category": "crop_placeholder",
+      "url": "https://static.prod-images.emergentagent.com/jobs/0e74adc5-d4e2-40d4-86ab-aa4167bd6db4/images/fd1d5ba6b5ff1671963ff3a125735c8e05aff78ea2b9f6651693b6b7fddc6363.png",
+      "description": "Studio shot of fresh assorted harvested crops on a sand textured background.",
+      "instructions": "Use as a fallback image for 'Crop Info Cards' or generic ML recommendation thumbnails."
+    },
+    {
+      "category": "soil_hands",
+      "url": "https://images.unsplash.com/photo-1642952273588-ed6fa28870ac?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxncm93aW5nJTIwcGxhbnQlMjBzb2lsfGVufDB8fHx8MTc3NjUwNTM2Mnww&ixlib=rb-4.1.0&q=85",
+      "description": "Close up of person holding dirt in their hand.",
+      "instructions": "Can be used in the 'Soil/Weather Data Input Form' section as a decorative side image."
+    },
+    {
+      "category": "farm_truck",
+      "url": "https://images.unsplash.com/photo-1585428311604-98738fc5687a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxmYXJtJTIwZmllbGQlMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzc2NTA1MzYyfDA&ixlib=rb-4.1.0&q=85",
+      "description": "White and black truck on green grass field.",
+      "instructions": "Use for logistics or alternative crop sections."
+    }
+  ],
+  "accessibility": {
+    "contrast": "Ensure text contrast meets APCA/WCAG standards. Do not use pure gray. Tint neutrals with the primary hue (e.g., green-tinted grays).",
+    "focus": "All form inputs (N, P, K, etc.) MUST have a clear focus ring (focus:ring-2 focus:ring-primary focus:outline-none)."
+  },
+  "instructions_to_main_agent": [
+    "Build the dashboard using React + Tailwind + Shadcn UI.",
+    "Use pure HTML + Tailwind for complex bento grids.",
+    "Implement the ML feature to accept N, P, K, temp, humidity, pH, rainfall and output prediction.",
+    "Display prediction confidence score prominently using a progress bar or circular ring.",
+    "Integrate Recharts to show 'Crop Price Trends'. Use the chart_palettes defined.",
+    "Use 'lucide-react' for all icons (e.g., Sprout, Droplet, Thermometer, Wind, MessageCircle).",
+    "Implement the Chatbot using Emergent LLM. Place it accessibly.",
+    "Add 'data-testid' attributes to all form inputs, submit buttons, and recommendation cards (e.g., data-testid='predict-button', data-testid='npk-input').",
+    "Run yarn add lucide-react recharts @radix-ui/react-icons."
+  ]
+}

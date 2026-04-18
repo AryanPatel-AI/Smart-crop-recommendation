@@ -1,0 +1,14 @@
+node_modules/
+.env
+build/
+dist/
+venv/
+__pycache__/
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+.idea/
+.vscode/  
+# Add any other files or directories you don't want to commit
