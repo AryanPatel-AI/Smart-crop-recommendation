@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./index.css";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "";
 const API = `${BACKEND_URL}/api`;
 
 const CROP_EMOJIS = {

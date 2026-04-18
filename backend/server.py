@@ -1,4 +1,6 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, Request
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -143,4 +145,16 @@ logger = logging.getLogger(__name__)
 async def shutdown_db_client():
     if client:
         client.close()
+
+# Serve static files - must be after api_router to not override /api routes
+static_dir = ROOT_DIR / "static"
+if static_dir.exists():
+    app.mount("/", StaticFiles(directory=str(static_dir), html=True), name="static")
+
+    @app.get("/{full_path:path}")
+    async def serve_react_app(full_path: str, request: Request):
+        # Only serve index.html if the path doesn't start with /api
+        if not full_path.startswith("api"):
+            return FileResponse(str(static_dir / "index.html"))
+        return {"error": "API route not found"}
 
