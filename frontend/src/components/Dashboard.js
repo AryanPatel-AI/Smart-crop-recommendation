@@ -31,7 +31,7 @@ import {
   Bar
 } from 'recharts';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = '/api';
 
 const Dashboard = ({ onBack }) => {
   const [activeTab, setActiveTab] = useState('recommendation');

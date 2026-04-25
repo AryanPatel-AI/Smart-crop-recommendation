@@ -36,18 +36,23 @@ if MODEL_PATH.exists():
     except Exception as e:
         print(f"❌ Failed to load ML model: {e}")
 
-# MongoDB connection
-mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+# MongoDB connection (Optional)
+mongo_url = os.environ.get('MONGO_URL')
 db_name = os.environ.get('DB_NAME', 'smart_farming')
 client = None
 db = None
 
-try:
-    client = AsyncIOMotorClient(mongo_url)
-    db = client[db_name]
-    print(f"✅ Connected to MongoDB: {db_name}")
-except Exception as e:
-    print(f"❌ MongoDB connection failed: {e}")
+if mongo_url:
+    try:
+        # Add a short serverSelectionTimeoutMS so it fails fast if connection is bad
+        client = AsyncIOMotorClient(mongo_url, serverSelectionTimeoutMS=2000)
+        db = client[db_name]
+        print(f"✅ MongoDB configured: {db_name}")
+    except Exception as e:
+        print(f"⚠️ MongoDB configuration failed: {e}")
+        db = None
+else:
+    print("ℹ️ Database storage disabled (MONGO_URL not set in environment)")
 
 # Models with defaults to support simpler forms
 class CropInput(BaseModel):
