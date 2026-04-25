@@ -1,36 +1,30 @@
-# Stage 1: Build Frontend
-FROM node:18 as build-stage
+# Stage 1: Build the Frontend
+FROM node:20-slim AS frontend-build
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 COPY frontend/ ./
+ENV CI=false
 RUN npm run build
 
-# Stage 2: Serve Backend & Frontend
-FROM python:3.10-slim
+# Stage 2: Build the Backend and Serve
+FROM node:20-slim
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
+# Install dependencies for backend
+COPY backend/package*.json ./backend/
+WORKDIR /app/backend
+RUN npm install --production --legacy-peer-deps
 
-# Copy requirements and install
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy backend source
+COPY backend/ ./
 
-# Copy backend code (includes models and data)
-COPY backend/ ./backend/
+# Copy built frontend from Stage 1
+COPY --from=frontend-build /app/frontend/build /app/frontend/build
 
-# Copy built frontend to backend/static for FastAPI to serve
-COPY --from=build-stage /app/frontend/build ./backend/static
-
-# Set environment variables
-ENV PYTHONUNBUFFERED=1
+# Expose the port (HF Spaces will set PORT environment variable)
 ENV PORT=7860
-
-# Expose the port used by Hugging Face Spaces
 EXPOSE 7860
 
-# Start the FastAPI server using Uvicorn
-CMD ["uvicorn", "backend.server:app", "--host", "0.0.0.0", "--port", "7860"]
+# Start the application
+CMD ["node", "server.js"]

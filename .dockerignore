@@ -1,23 +1,8 @@
-# Dependencies
-node_modules/
-venv/
-__pycache__/
-*.pyc
-
-# Distribution
-build/
-dist/
-static/
-
-# Environment
-.env
-.venv
-.DS_Store
-
-# Git
+node_modules
+npm-debug.log
+frontend/node_modules
+frontend/build
+backend/node_modules
 .git
-.gitignore
-
-# Project docs
-docs/
-*.md
+.env
+.DS_Store

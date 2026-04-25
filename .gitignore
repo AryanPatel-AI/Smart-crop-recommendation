@@ -1,0 +1,39 @@
+# Node.js
+node_modules/
+dist/
+build/
+.npm
+.eslintcache
+
+# Frontend Build
+frontend/node_modules/
+frontend/build/
+
+# Backend
+backend/node_modules/
+backend/.env
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+backend-python/venv/
+backend-python/__pycache__/
+
+# Large Files
+*.pkl
+git-lfs.zip
+git-lfs-bin/

@@ -1,32 +1,29 @@
 ---
-title: Smart Crop Recommendation
-emoji: 🌱
+title: Patel & Co. Smart Farming Hub
+emoji: 🌾
 colorFrom: green
-colorTo: emerald
+colorTo: green
 sdk: docker
 pinned: false
 app_port: 7860
 ---
 
-# Smart Crop Recommendation
+# Patel & Co. Smart Farming Hub
 
-AI-powered soil analysis and crop recommendation system.
+A modern, AI-powered smart agriculture platform for crop recommendations and climate analysis.
 
-## Setup
+## Features
+- **AI Crop Recommendation**: Predictive analysis based on NPK, pH, Temperature, Humidity, and Rainfall.
+* **Premium Dashboard**: Glassmorphism UI with real-time weather and market trends.
+* **Responsive Design**: Optimized for mobile and desktop.
+* **Personalized Branding**: Developed by Aryan Patel.
 
-This application is containerized using Docker and is ready for deployment on Hugging Face Spaces.
+## Deployment on Hugging Face
+This space is containerized using Docker. It builds the React frontend and serves it via a Node.js backend.
 
-### Deployment Instructions
+### Setup
+Ensure you have set the following Secret in your Hugging Face Space settings:
+- `MONGO_URL`: Your MongoDB connection string (e.g., from MongoDB Atlas).
 
-1. Create a new Space on [Hugging Face](https://huggingface.co/new-space).
-2. Select **Docker** as the SDK.
-3. Choose the **Blank** template or upload these files directly.
-4. Once the files are pushed, Hugging Face will automatically build the Docker image and start the application.
-
-### Features
-
-- **Soil Analysis**: Input Nitrogen, Phosphorus, Potassium, and other soil metrics.
-- **Climate Data**: Considers Temperature, Humidity, and Rainfall.
-- **AI Recommendations**: Powered by a Scikit-Learn model to predict the most suitable crop.
-- **Market Insights**: Provides price ranges, seasons, and fertilizer guides for each recommended crop.
-- **Premium UI**: Modern, responsive interface with a high-intensity "Agri-Tech" theme.
+---
+Developed with ❤️ by Aryan Patel.

@@ -1,0 +1,39 @@
+{
+  "accuracy": 0.9454545454545454,
+  "n_samples": 2200,
+  "n_features": 7,
+  "n_classes": 22,
+  "classes": [
+    "Apple",
+    "Banana",
+    "Chickpea",
+    "Coconut",
+    "Coffee",
+    "Cotton",
+    "Grapes",
+    "Jute",
+    "Lentil",
+    "Maize",
+    "Mango",
+    "Onion",
+    "Orange",
+    "Papaya",
+    "Potato",
+    "Rice",
+    "Soybean",
+    "Sugarcane",
+    "Tea",
+    "Tomato",
+    "Watermelon",
+    "Wheat"
+  ],
+  "feature_importance": {
+    "N": 0.19346783908909657,
+    "P": 0.15207583708027694,
+    "K": 0.1764400781761114,
+    "temperature": 0.14884341579125854,
+    "humidity": 0.10949217193866007,
+    "ph": 0.059719688989328834,
+    "rainfall": 0.1599609689352677
+  }
+}
