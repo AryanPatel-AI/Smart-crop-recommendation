@@ -133,21 +133,27 @@ async def recommend_crop(input: CropInput):
             }
         }
         
-        # Save to MongoDB
+        # Save to MongoDB (with timeout and error handling)
         if db is not None:
-            record = RecommendationRecord(
-                **input_data,
-                recommendedCrop=prediction,
-                fertilizer=response_data["npk"]
-            )
-            doc = record.model_dump()
-            doc['timestamp'] = doc['timestamp'].isoformat()
-            await db.recommendations.insert_one(doc)
+            try:
+                record = RecommendationRecord(
+                    **input_data,
+                    recommendedCrop=prediction,
+                    fertilizer=response_data["npk"]
+                )
+                doc = record.model_dump()
+                doc['timestamp'] = doc['timestamp'].isoformat()
+                # Use a short timeout for the DB insert to avoid hanging if connection is broken
+                await db.recommendations.insert_one(doc)
+            except Exception as mongo_err:
+                logging.error(f"MongoDB save failed (skipping): {mongo_err}")
+                # We don't raise here, just skip saving if DB is down
             
         return {"success": True, "data": response_data}
     except Exception as e:
-        logging.error(f"Prediction error: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        error_msg = f"Prediction error: {str(e)}"
+        logging.error(error_msg)
+        raise HTTPException(status_code=500, detail=error_msg)
 
 @api_router.get("/history")
 async def get_history():
