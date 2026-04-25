@@ -491,7 +491,7 @@ const CropAdvisor = () => {
     setLoading(true);
     setResult(null);
     try {
-      const res = await axios.post("http://localhost:5005/api/recommend", {
+      const res = await axios.post("http://localhost:8000/api/recommend", {
         N: parseFloat(form.N),
         P: parseFloat(form.P),
         K: parseFloat(form.K),

@@ -19,7 +19,7 @@ A modern, AI-powered smart agriculture platform for crop recommendations and cli
 * **Personalized Branding**: Developed by Aryan Patel.
 
 ## Deployment on Hugging Face
-This space is containerized using Docker. It builds the React frontend and serves it via a Node.js backend.
+This space is containerized using Docker. It builds the React frontend and serves it via a high-performance FastAPI (Python) backend.
 
 ### Setup
 Ensure you have set the following Secret in your Hugging Face Space settings:

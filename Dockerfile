@@ -7,24 +7,37 @@ COPY frontend/ ./
 ENV CI=false
 RUN npm run build
 
-# Stage 2: Build the Backend and Serve
-FROM node:20-slim
+# Stage 2: Build the Python Backend and Serve
+FROM python:3.11-slim-bullseye
 WORKDIR /app
 
-# Install dependencies for backend
-COPY backend/package*.json ./backend/
-WORKDIR /app/backend
-RUN npm install --production --legacy-peer-deps
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy backend source
-COPY backend/ ./
+# Install Python dependencies
+COPY backend/requirements.txt ./backend/
+RUN pip install --no-cache-dir -r backend/requirements.txt
 
-# Copy built frontend from Stage 1
-COPY --from=frontend-build /app/frontend/build /app/frontend/build
+# Create a non-root user for Hugging Face Spaces
+RUN useradd -m -u 1000 user
+USER user
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH
 
-# Expose the port (HF Spaces will set PORT environment variable)
+WORKDIR /home/user/app
+
+# Copy backend source and built frontend
+COPY --chown=user backend/ ./backend/
+COPY --chown=user --from=frontend-build /app/frontend/build ./frontend/build
+
+# Expose the port (HF Spaces uses 7860)
 ENV PORT=7860
 EXPOSE 7860
 
-# Start the application
-CMD ["node", "server.js"]
+# Set working directory to backend
+WORKDIR /home/user/app/backend
+
+# Start the application using uvicorn
+CMD ["python3", "-m", "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "7860"]

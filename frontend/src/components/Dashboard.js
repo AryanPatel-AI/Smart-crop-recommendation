@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Sprout, 
-  Droplets, 
-  Thermometer, 
-  Wind, 
-  CloudRain, 
-  Bell, 
+import {
+  Sprout,
+  Droplets,
+  Thermometer,
+  Wind,
+  CloudRain,
+  Bell,
   ArrowLeft,
   ChevronRight,
   FlaskConical,
@@ -19,19 +19,19 @@ import {
   Leaf
 } from 'lucide-react';
 import axios from 'axios';
-import { 
-  LineChart, 
-  Line, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
   BarChart,
   Bar
 } from 'recharts';
 
-const API_BASE = 'http://localhost:5005/api';
+const API_BASE = 'http://localhost:5000/api';
 
 const Dashboard = ({ onBack }) => {
   const [activeTab, setActiveTab] = useState('recommendation');
@@ -100,7 +100,7 @@ const Dashboard = ({ onBack }) => {
       <header className="bg-[#064e3b]/50 backdrop-blur-md border-b border-emerald-900/30 py-4 px-6 sticky top-0 z-30">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <button 
+            <button
               onClick={onBack}
               className="p-2 hover:bg-slate-800 rounded-lg transition-colors text-slate-400 hover:text-white"
             >
@@ -137,17 +137,16 @@ const Dashboard = ({ onBack }) => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                activeTab === tab.id 
-                  ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20 font-bold' 
-                  : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
-              }`}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${activeTab === tab.id
+                ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20 font-bold'
+                : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+                }`}
             >
               {tab.icon}
               {tab.label}
             </button>
           ))}
-          
+
           <div className="mt-auto p-4 bg-slate-800/50 rounded-2xl border border-slate-700/50">
             <h4 className="text-xs font-bold text-emerald-500 uppercase tracking-widest mb-2">Pro Tip</h4>
             <p className="text-xs text-slate-400 leading-relaxed">
@@ -162,9 +161,8 @@ const Dashboard = ({ onBack }) => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-col items-center gap-1 p-2 ${
-                activeTab === tab.id ? 'text-emerald-500 font-bold' : 'text-slate-500'
-              }`}
+              className={`flex flex-col items-center gap-1 p-2 ${activeTab === tab.id ? 'text-emerald-500 font-bold' : 'text-slate-500'
+                }`}
             >
               {tab.icon}
               <span className="text-[10px]">{tab.label.split(' ')[0]}</span>
@@ -175,7 +173,7 @@ const Dashboard = ({ onBack }) => {
         {/* Main Content Area */}
         <main className="flex-1 overflow-y-auto p-6 md:p-10 pb-24 md:pb-10 bg-[#042f2e]">
           <div className="max-w-5xl mx-auto">
-            
+
             <AnimatePresence mode="wait">
               {activeTab === 'recommendation' && (
                 <motion.div
@@ -199,14 +197,14 @@ const Dashboard = ({ onBack }) => {
                         <FlaskConical className="w-5 h-5 text-emerald-500" />
                         Soil & Climate Metrics
                       </h3>
-                      
+
                       <form onSubmit={handleRecommend} className="space-y-6">
                         <div>
                           <label className="block text-sm font-semibold text-slate-400 mb-2">Soil Type</label>
-                          <select 
+                          <select
                             className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition-colors"
                             value={formData.soilType}
-                            onChange={(e) => setFormData({...formData, soilType: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, soilType: e.target.value })}
                           >
                             <option value="loamy">Loamy</option>
                             <option value="clay">Clay</option>
@@ -214,39 +212,39 @@ const Dashboard = ({ onBack }) => {
                             <option value="silty">Silty</option>
                           </select>
                         </div>
-                        
+
                         <div className="grid grid-cols-2 gap-4">
                           <div>
                             <label className="block text-sm font-semibold text-slate-400 mb-2">Temp (°C)</label>
-                            <input 
+                            <input
                               type="number"
                               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500"
                               value={formData.temperature}
-                              onChange={(e) => setFormData({...formData, temperature: e.target.value})}
+                              onChange={(e) => setFormData({ ...formData, temperature: e.target.value })}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-semibold text-slate-400 mb-2">Humidity (%)</label>
-                            <input 
+                            <input
                               type="number"
                               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500"
                               value={formData.humidity}
-                              onChange={(e) => setFormData({...formData, humidity: e.target.value})}
+                              onChange={(e) => setFormData({ ...formData, humidity: e.target.value })}
                             />
                           </div>
                         </div>
 
                         <div>
                           <label className="block text-sm font-semibold text-slate-400 mb-2">Rainfall (mm)</label>
-                          <input 
+                          <input
                             type="number"
                             className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500"
                             value={formData.rainfall}
-                            onChange={(e) => setFormData({...formData, rainfall: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, rainfall: e.target.value })}
                           />
                         </div>
 
-                        <button 
+                        <button
                           type="submit"
                           disabled={isLoading}
                           className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-emerald-800 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2"
@@ -270,14 +268,14 @@ const Dashboard = ({ onBack }) => {
                           </p>
                         </div>
                       ) : (
-                        <motion.div 
+                        <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           className="space-y-6"
                         >
                           <div className="bg-gradient-to-br from-emerald-600 to-emerald-800 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
                             <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-                            
+
                             <div className="relative z-10 flex flex-col md:row items-start md:items-center justify-between gap-6">
                               <div>
                                 <span className="text-emerald-200 text-sm font-bold uppercase tracking-widest">Recommended Crop</span>
@@ -361,7 +359,7 @@ const Dashboard = ({ onBack }) => {
                             </div>
                             <CloudRain className="w-16 h-16 text-white/50" />
                           </div>
-                          
+
                           <div className="grid grid-cols-2 gap-4 mt-8 pt-8 border-t border-white/10">
                             <div className="flex items-center gap-2">
                               <Droplets className="w-5 h-5 text-blue-200" />
@@ -399,7 +397,7 @@ const Dashboard = ({ onBack }) => {
                               <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                               <XAxis dataKey="day" stroke="#64748b" />
                               <YAxis stroke="#64748b" />
-                              <Tooltip 
+                              <Tooltip
                                 contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b' }}
                                 itemStyle={{ color: '#10b981' }}
                               />
@@ -429,17 +427,15 @@ const Dashboard = ({ onBack }) => {
                     <div className="space-y-6">
                       <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest">Active Alerts</h3>
                       {notifications.map((notif) => (
-                        <div 
-                          key={notif.id} 
-                          className={`p-6 rounded-3xl border flex gap-6 items-start ${
-                            notif.type === 'warn' 
-                              ? 'bg-amber-500/5 border-amber-500/20' 
-                              : 'bg-emerald-500/5 border-emerald-500/20'
-                          }`}
+                        <div
+                          key={notif.id}
+                          className={`p-6 rounded-3xl border flex gap-6 items-start ${notif.type === 'warn'
+                            ? 'bg-amber-500/5 border-amber-500/20'
+                            : 'bg-emerald-500/5 border-emerald-500/20'
+                            }`}
                         >
-                          <div className={`p-3 rounded-2xl ${
-                            notif.type === 'warn' ? 'bg-amber-500/10' : 'bg-emerald-500/10'
-                          }`}>
+                          <div className={`p-3 rounded-2xl ${notif.type === 'warn' ? 'bg-amber-500/10' : 'bg-emerald-500/10'
+                            }`}>
                             {notif.type === 'warn' ? <AlertTriangle className="w-6 h-6 text-amber-500" /> : <Zap className="w-6 h-6 text-emerald-500" />}
                           </div>
                           <div className="flex-1">
@@ -464,7 +460,7 @@ const Dashboard = ({ onBack }) => {
                             <span className="text-lg font-black text-white">62%</span>
                           </div>
                           <div className="w-full h-3 bg-slate-950 rounded-full overflow-hidden">
-                            <motion.div 
+                            <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: '62%' }}
                               className="h-full bg-emerald-500"

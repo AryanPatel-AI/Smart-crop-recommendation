@@ -34,6 +34,6 @@ backend-python/venv/
 backend-python/__pycache__/
 
 # Large Files
-*.pkl
+# *.pkl
 git-lfs.zip
 git-lfs-bin/
