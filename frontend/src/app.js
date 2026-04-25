@@ -562,9 +562,33 @@ const CropAdvisor = () => {
         </form>
 
         {loading && (
-          <div style={{ marginTop: "2rem", textAlign: "center" }}>
-            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1 }}>
-              <RotateCcw size={40} color="#10b981" />
+          <div style={{ marginTop: "3rem", textAlign: "center" }}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              style={{ display: "flex", flexDirection: "column", itemsCenter: "center", gap: "1.5rem" }}
+            >
+              <div style={{ position: "relative", width: "80px", height: "80px", margin: "0 auto" }}>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                  style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "4px solid rgba(16, 185, 129, 0.1)", borderTopColor: "#10b981" }}
+                />
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
+                  style={{ position: "absolute", inset: "20px", display: "flex", alignItems: "center", justifyContent: "center", color: "#10b981" }}
+                >
+                  <Sprout size={32} />
+                </motion.div>
+              </div>
+              <motion.p
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                style={{ color: "#10b981", fontWeight: 700, fontSize: "1.1rem", letterSpacing: "1px" }}
+              >
+                AI IS ANALYZING SOIL DATA...
+              </motion.p>
             </motion.div>
           </div>
         )}

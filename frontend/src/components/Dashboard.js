@@ -253,6 +253,28 @@ const Dashboard = ({ onBack }) => {
                           {!isLoading && <ChevronRight className="w-5 h-5" />}
                         </button>
                       </form>
+
+                      {isLoading && (
+                        <div className="mt-8 flex flex-col items-center gap-4">
+                          <div className="relative w-12 h-12">
+                            <motion.div 
+                              animate={{ rotate: 360 }}
+                              transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                              className="absolute inset-0 border-4 border-emerald-500/10 border-t-emerald-500 rounded-full"
+                            />
+                            <motion.div 
+                              animate={{ scale: [1, 1.2, 1] }}
+                              transition={{ repeat: Infinity, duration: 1 }}
+                              className="absolute inset-0 flex items-center justify-center text-emerald-500"
+                            >
+                              <Sprout className="w-6 h-6" />
+                            </motion.div>
+                          </div>
+                          <span className="text-sm font-bold text-emerald-500 animate-pulse uppercase tracking-widest">
+                            Analyzing Soil...
+                          </span>
+                        </div>
+                      )}
                     </div>
 
                     {/* Result Display */}
