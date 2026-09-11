@@ -1,5 +1,6 @@
 CROP_INFO = {
     'Rice': {
+        'emoji': '🌾',
         'description': 'A staple grain crop grown in flooded fields, requiring warm temperatures and high humidity.',
         'season': 'Kharif (Monsoon)',
         'duration': '3-6 months',
@@ -17,6 +18,7 @@ CROP_INFO = {
         'best_locations': ['India', 'China', 'Indonesia', 'Bangladesh', 'Vietnam']
     },
     'Wheat': {
+        'emoji': '🌾',
         'description': 'A cool-season cereal crop that thrives in moderate rainfall and temperature conditions.',
         'season': 'Rabi (Winter)',
         'duration': '4-6 months',
@@ -34,6 +36,7 @@ CROP_INFO = {
         'best_locations': ['India', 'China', 'USA', 'Russia', 'Canada']
     },
     'Maize': {
+        'emoji': '🌽',
         'description': 'A versatile cereal crop used for food, feed, and industrial purposes.',
         'season': 'Kharif & Rabi',
         'duration': '3-4 months',
@@ -51,6 +54,7 @@ CROP_INFO = {
         'best_locations': ['USA', 'China', 'Brazil', 'Argentina', 'India']
     },
     'Cotton': {
+        'emoji': '☁️',
         'description': 'A fiber crop requiring warm weather and moderate rainfall for optimal growth.',
         'season': 'Kharif',
         'duration': '5-6 months',
@@ -68,6 +72,7 @@ CROP_INFO = {
         'best_locations': ['India', 'China', 'USA', 'Pakistan', 'Brazil']
     },
     'Jute': {
+        'emoji': '🧶',
         'description': 'A natural fiber crop grown in warm, humid conditions with heavy rainfall.',
         'season': 'Kharif',
         'duration': '4-5 months',
@@ -85,6 +90,7 @@ CROP_INFO = {
         'best_locations': ['India', 'Bangladesh', 'China', 'Thailand']
     },
     'Coffee': {
+        'emoji': '☕',
         'description': 'A tropical perennial crop requiring specific altitude and temperature conditions.',
         'season': 'Year-round (Harvest: Oct-Feb)',
         'duration': 'Perennial (3-4 years to first harvest)',
@@ -102,6 +108,7 @@ CROP_INFO = {
         'best_locations': ['Brazil', 'Vietnam', 'Colombia', 'Indonesia', 'Ethiopia']
     },
     'Tea': {
+        'emoji': '🍵',
         'description': 'A perennial evergreen shrub requiring acidic soil and high rainfall.',
         'season': 'Year-round production',
         'duration': 'Perennial (3-5 years to commercial production)',
@@ -119,6 +126,7 @@ CROP_INFO = {
         'best_locations': ['China', 'India', 'Kenya', 'Sri Lanka', 'Vietnam']
     },
     'Sugarcane': {
+        'emoji': '🎋',
         'description': 'A tall perennial grass grown for sugar production in tropical regions.',
         'season': 'Year-round (12-18 month crop)',
         'duration': '12-18 months',
@@ -136,6 +144,7 @@ CROP_INFO = {
         'best_locations': ['Brazil', 'India', 'China', 'Thailand', 'Pakistan']
     },
     'Potato': {
+        'emoji': '🥔',
         'description': 'A versatile tuber crop preferring cool weather and well-drained soil.',
         'season': 'Rabi',
         'duration': '3-4 months',
@@ -153,6 +162,7 @@ CROP_INFO = {
         'best_locations': ['China', 'India', 'Russia', 'Ukraine', 'USA']
     },
     'Tomato': {
+        'emoji': '🍅',
         'description': 'A warm-season vegetable crop widely grown for fresh market and processing.',
         'season': 'Year-round (climate dependent)',
         'duration': '3-4 months',
@@ -170,6 +180,7 @@ CROP_INFO = {
         'best_locations': ['China', 'India', 'USA', 'Turkey', 'Egypt']
     },
     'Onion': {
+        'emoji': '🧅',
         'description': 'A bulb vegetable requiring moderate temperatures and well-drained soil.',
         'season': 'Rabi & Kharif',
         'duration': '4-5 months',
@@ -187,6 +198,7 @@ CROP_INFO = {
         'best_locations': ['China', 'India', 'USA', 'Egypt', 'Iran']
     },
     'Apple': {
+        'emoji': '🍎',
         'description': 'A temperate fruit crop requiring cold winters and moderate summers.',
         'season': 'Harvest: Aug-Oct',
         'duration': 'Perennial (3-5 years to bearing)',
@@ -204,6 +216,7 @@ CROP_INFO = {
         'best_locations': ['China', 'USA', 'India', 'Turkey', 'Poland']
     },
     'Banana': {
+        'emoji': '🍌',
         'description': 'A tropical fruit crop requiring warm, humid conditions and consistent moisture.',
         'season': 'Year-round',
         'duration': '10-12 months',
@@ -221,6 +234,7 @@ CROP_INFO = {
         'best_locations': ['India', 'China', 'Philippines', 'Ecuador', 'Brazil']
     },
     'Mango': {
+        'emoji': '🥭',
         'description': 'A tropical fruit tree requiring warm weather and distinct seasons.',
         'season': 'Harvest: Mar-Jul',
         'duration': 'Perennial (3-5 years to bearing)',
@@ -238,6 +252,7 @@ CROP_INFO = {
         'best_locations': ['India', 'China', 'Thailand', 'Mexico', 'Pakistan']
     },
     'Grapes': {
+        'emoji': '🍇',
         'description': 'A fruit crop requiring specific climate, high Potash, and good drainage.',
         'season': 'Harvest varies by region',
         'duration': 'Perennial (2-3 years to bearing)',
@@ -255,6 +270,7 @@ CROP_INFO = {
         'best_locations': ['China', 'Italy', 'USA', 'Spain', 'France']
     },
     'Orange': {
+        'emoji': '🍊',
         'description': 'A citrus fruit tree requiring subtropical climate and moderate rainfall.',
         'season': 'Harvest: Nov-Mar',
         'duration': 'Perennial (3-4 years to bearing)',
@@ -272,6 +288,7 @@ CROP_INFO = {
         'best_locations': ['Brazil', 'USA', 'China', 'India', 'Mexico']
     },
     'Watermelon': {
+        'emoji': '🍉',
         'description': 'A warm-season fruit crop requiring hot weather and adequate moisture.',
         'season': 'Summer',
         'duration': '3-4 months',
@@ -289,6 +306,7 @@ CROP_INFO = {
         'best_locations': ['China', 'Turkey', 'Iran', 'Brazil', 'Egypt']
     },
     'Papaya': {
+        'emoji': '🍈',
         'description': 'A tropical fruit crop requiring warm temperatures and consistent moisture.',
         'season': 'Year-round',
         'duration': '8-12 months to first fruit',
@@ -306,6 +324,7 @@ CROP_INFO = {
         'best_locations': ['India', 'Brazil', 'Mexico', 'Indonesia', 'Nigeria']
     },
     'Coconut': {
+        'emoji': '🥥',
         'description': 'A tropical palm requiring coastal climate, high humidity, and rainfall.',
         'season': 'Year-round production',
         'duration': 'Perennial (5-7 years to bearing)',
@@ -323,6 +342,7 @@ CROP_INFO = {
         'best_locations': ['Indonesia', 'Philippines', 'India', 'Brazil', 'Sri Lanka']
     },
     'Chickpea': {
+        'emoji': '🥜',
         'description': 'A pulse crop tolerating dry conditions, fixing nitrogen in soil.',
         'season': 'Rabi',
         'duration': '4-5 months',
@@ -340,6 +360,7 @@ CROP_INFO = {
         'best_locations': ['India', 'Australia', 'Pakistan', 'Turkey', 'Myanmar']
     },
     'Lentil': {
+        'emoji': '🍲',
         'description': 'A cool-season pulse crop with low water requirement.',
         'season': 'Rabi',
         'duration': '3-4 months',
@@ -357,6 +378,7 @@ CROP_INFO = {
         'best_locations': ['Canada', 'India', 'Turkey', 'USA', 'Australia']
     },
     'Soybean': {
+        'emoji': '🌿',
         'description': 'An oilseed and protein crop fixing atmospheric nitrogen.',
         'season': 'Kharif',
         'duration': '3-4 months',

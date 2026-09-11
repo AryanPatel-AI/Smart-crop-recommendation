@@ -63,6 +63,7 @@ class CropInput(BaseModel):
     humidity: float = 70.0
     ph: float = 6.5
     rainfall: float = 100.0
+    soilType: str = "Loamy" # Default for history display consistency
 
 class RecommendationRecord(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -73,7 +74,9 @@ class RecommendationRecord(BaseModel):
     humidity: float
     ph: float
     rainfall: float
+    soilType: str
     recommendedCrop: str
+    emoji: str
     fertilizer: str
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
@@ -110,6 +113,10 @@ async def recommend_crop(input: CropInput):
         input_data = input.model_dump()
         features = pd.DataFrame([input_data])
         
+        # Filter out features not used in training (like soilType)
+        model_features = ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']
+        features = features[model_features]
+        
         # Predict using ML model
         prediction = model.predict(features)[0]
         
@@ -125,6 +132,7 @@ async def recommend_crop(input: CropInput):
         # Unified response for both App.js and Dashboard.js
         response_data = {
             "crop": prediction,
+            "emoji": info.get("emoji", "🌱"),
             "description": info.get("description"),
             "season": info.get("season"),
             "npk": info.get("fertilizer", {}).get("NPK"),
@@ -144,6 +152,7 @@ async def recommend_crop(input: CropInput):
                 record = RecommendationRecord(
                     **input_data,
                     recommendedCrop=prediction,
+                    emoji=response_data["emoji"],
                     fertilizer=response_data["npk"]
                 )
                 doc = record.model_dump()
@@ -174,19 +183,24 @@ async def get_history():
 
 @api_router.get("/weather")
 async def get_weather():
+    import random
+    base_temp = 25 + random.uniform(-5, 5)
+    conditions = ['Sunny', 'Partly Cloudy', 'Cloudy', 'Rain', 'Thunderstorm']
+    current_condition = random.choice(conditions)
+    
     return {
         "current": {
-            "temp": 28,
-            "condition": 'Sunny',
-            "humidity": 65,
-            "wind": 12
+            "temp": round(base_temp, 1),
+            "condition": current_condition,
+            "humidity": random.randint(40, 90),
+            "wind": random.randint(5, 25)
         },
         "forecast": [
-            { "day": 'Mon', "temp": 29, "condition": 'Sunny' },
-            { "day": 'Tue', "temp": 30, "condition": 'Partly Cloudy' },
-            { "day": 'Wed', "temp": 27, "condition": 'Rain' },
-            { "day": 'Thu', "temp": 26, "condition": 'Thunderstorm' },
-            { "day": 'Fri', "temp": 28, "condition": 'Cloudy' }
+            { "day": 'Mon', "temp": round(base_temp + random.uniform(-2, 2), 1), "condition": random.choice(conditions) },
+            { "day": 'Tue', "temp": round(base_temp + random.uniform(-2, 2), 1), "condition": random.choice(conditions) },
+            { "day": 'Wed', "temp": round(base_temp + random.uniform(-2, 2), 1), "condition": random.choice(conditions) },
+            { "day": 'Thu', "temp": round(base_temp + random.uniform(-2, 2), 1), "condition": random.choice(conditions) },
+            { "day": 'Fri', "temp": round(base_temp + random.uniform(-2, 2), 1), "condition": random.choice(conditions) }
         ]
     }
 
